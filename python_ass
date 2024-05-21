@@ -1,0 +1,67 @@
+f=open('C:\\oo.py\\file.txt','w')
+a=[]
+sum=0
+total=0
+for i in range(1,2):
+    m=input(f"Enter the student-{i} roll number: ")
+    b=input(f"Enter the student-{i} name: ")
+    a.append(m)
+    a.append(b)
+    for j in range (1,6):
+         c=input(f"Enter the subject-{j} grade: ")
+         if c=='A':
+             sum=sum+9
+         elif c=='B':
+             sum=sum+8
+         elif c=='C':
+             sum=sum+7
+         elif c=='D':
+             sum=sum+6
+         elif c=='O':
+             sum=sum+10
+         elif c=='u':
+             sum=0
+         a.append(c)
+a.append(sum)
+d=(sum/5)*10
+a.append(d)
+print(a)
+a=str(a)
+f.write(a)
+f.write("\n")  
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+def analyze_results(input_file, output_file):
+  
+    categories = {
+        '90 and above': [],
+        '80 to 89': [],
+        '70 to 79': [],
+        'below 70': [],
+        'with arrears': []
+    }
+
+    with open('C:\\oo.py\\write.py', 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            
+            name, score, arrears = line.strip().split(',')
+            score = float(score)
+
+            if score >= 90:
+                categories['90 and above'].append(name)
+            elif 80 <= score < 90:
+                categories['80 to 89'].append(name)
+            elif 70 <= score < 80:
+                categories['70 to 79'].append(name)
+            else:
+                categories['below 70'].append(name)
+            if arrears == 'Yes':
+                categories['with arrears'].append(name)
+                
+    with open('C:\\oo.py\\analize.txt', 'w') as f:
+        for category, students in categories.items():
+            f.write(f'{category}:\n')
+            for student in students:
+                f.write(f'{student}\n')
+            f.write('\n')
+analyze_results('C:\\oo.py\\file.txt', 'C:\\oo.py\\analize.txt')
